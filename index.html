@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Baby!!!!</title>
+
+    <!-- link stylesheet -->
+    <link rel="stylesheet" href="homestyle.css">
+
+    <style>
+        /* Simple login design */
+        #login-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            z-index: 100; /* Ensure it's above the main content */
+        }
+
+        #login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        #login-container input[type="password"], #login-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        #login-container button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #login-container button:hover {
+            background-color: #218838;
+        }
+
+        /* Incorrect password message */
+        #incorrect-message {
+            display: none;
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Hide main content while login form is active */
+        #main-content {
+            display: none;
+        }
+
+        /* Full-page background image for login */
+        body.login-bg {
+            background: url('images/login.jpg') no-repeat center center fixed;
+            background-size: contain; /* Cover the whole page */
+        }
+
+        /* Full-page background image for main content */
+        body {
+    margin: 0;
+    padding: 0;
+    background: url('images/backgroundTEST.jpg') no-repeat center center fixed; /* Path to your image */
+    background-size: contain; /* Ensures the background fits within the area while maintaining its aspect ratio */
+}
+    </style>
+
+    <script>
+        function checkPassword() {
+            // Use sessionStorage instead of localStorage for authentication
+            if (!sessionStorage.getItem("authenticated")) {
+                document.getElementById('login-container').style.display = 'block'; // Show login container
+                document.getElementById('main-content').style.display = 'none'; // Hide main content
+                document.body.classList.add('login-bg'); // Apply login background
+            } else {
+                document.getElementById('login-container').style.display = 'none'; // Hide login container
+                document.getElementById('main-content').style.display = 'block'; // Show main content
+                document.body.classList.remove('login-bg'); // Remove login background
+                document.body.classList.add('main-bg'); // Apply main content background
+            }
+        }
+
+        function login() {
+            var password = document.getElementById('password').value;
+
+            // Replace 'yourpassword' with the actual password you want to use
+            if (password === "yourpassword") {
+                sessionStorage.setItem("authenticated", true); // Store a flag in sessionStorage indicating the user is authenticated
+                document.getElementById('login-container').style.display = 'none'; // Hide login container
+                document.getElementById('main-content').style.display = 'block'; // Show main content
+                document.body.classList.remove('login-bg'); // Remove login background
+                document.body.classList.add('main-bg'); // Apply main content background
+            } else {
+                // Show incorrect message
+                document.getElementById('incorrect-message').style.display = 'block';
+            }
+        }
+
+        window.onload = function() {
+            checkPassword(); // Check password when the page loads
+        };
+    </script>
+
+</head>
+<body>
+
+    <!-- Login container -->
+    <div id="login-container">
+        <h2>For My Mai Only</h2>
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <div id="incorrect-message">Yaksss, chismoso!!!</div> <!-- Incorrect password message -->
+    </div>
+
+    <!-- Main content (hidden until authentication) -->
+    <div id="main-content">
+        <!-- side navigation bar -->
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="love.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill=#d8f3dc d="..."></path></svg>
+                        <span class="link-text">Love</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="memories.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill=#d8f3dc d="..."></path></svg>
+                        <span class="link-text">Memories</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pictures.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill=#d8f3dc d="..."></path></svg>
+                        <span class="link-text">Pictures</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="others.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill=#d8f3dc d="..."></path></svg>
+                        <span class="link-text">Others</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="birthday.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill=#d8f3dc d="..."></path></svg>
+                        <span class="link-text">Birthday</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</body>
+</html>

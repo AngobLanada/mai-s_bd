@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+:root {
+    --bg-primary: #1b4332;
+    --bg-secondary: #74c69d;
+    --text-secondary: #2d6a4f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: #d8f3dc;
+    font-size: 16px;
+    font-family: "Caprasimo", serif;
+}
+
+.caprasimo-regular {
+    font-family: "Caprasimo", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: #2d6a4f;
+    background-image: url("images/backgroundTEST.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Improve performance on mobile */
+        background-size: cover; /* Cover the screen on smaller devices */
+    }
+}
+
+.navbar {
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: var(--bg-primary);
+    transition: width 200ms ease; /* Change transition for width */
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item {
+    width: 100%;
+    padding: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--bg-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: filter 600ms, background 200ms; /* Specify transitions */
+}
+
+.nav-link svg {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.nav-link:hover,
+.nav-link:focus { /* Add focus for accessibility */
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.link-text {
+    display: none;
+    margin-left: 1rem;
+}
+
+.navbar:hover {
+    width: 12rem;
+}
+
+.navbar:hover .link-text,
+.navbar:focus-within .link-text { /* Ensure text is visible on focus */
+    display: block;
+}
+
