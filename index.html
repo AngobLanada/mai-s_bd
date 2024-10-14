@@ -46,13 +46,24 @@
             background-color: #218838;
         }
 
-        /* Incorrect password message */
-        #incorrect-message {
-            display: none;
-            color: red;
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
+        /* Full-page background image for login */
+        body.login-bg {
+            background: url('images/login.jpg') no-repeat center center fixed;
+            background-size: contain;
+        }
+
+        /* Full-page background image for main content */
+        body.main-bg {
+            margin: 0;
+            padding: 0;
+            background: url('images/backgroundTEST.jpg') no-repeat center center fixed;
+            background-size: contain;
+        }
+
+        /* Full-page background image for incorrect password */
+        body.incorrect-bg {
+            background: url('images/incorrect-password.jpg') no-repeat center center fixed;
+            background-size: contain;
         }
 
         /* Hide main content while login form is active */
@@ -60,19 +71,22 @@
             display: none;
         }
 
-        /* Full-page background image for login */
-        body.login-bg {
-            background: url('images/login.jpg') no-repeat center center fixed;
-            background-size: contain; /* Cover the whole page */
+        /* Try again button styling */
+        #try-again {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
         }
 
-        /* Full-page background image for main content */
-        body {
-    margin: 0;
-    padding: 0;
-    background: url('images/backgroundTEST.jpg') no-repeat center center fixed; /* Path to your image */
-    background-size: contain; /* Ensures the background fits within the area while maintaining its aspect ratio */
-}
+        #try-again:hover {
+            background-color: #c82333;
+        }
     </style>
 
     <script>
@@ -101,9 +115,19 @@
                 document.body.classList.remove('login-bg'); // Remove login background
                 document.body.classList.add('main-bg'); // Apply main content background
             } else {
-                // Show incorrect message
-                document.getElementById('incorrect-message').style.display = 'block';
+                // Show full-screen image for incorrect password and the "Try Again" button
+                document.body.classList.add('incorrect-bg');
+                document.getElementById('login-container').style.display = 'none'; // Hide login container
+                document.getElementById('try-again').style.display = 'block'; // Show "Try Again" button
             }
+        }
+
+        function tryAgain() {
+            // Reset to allow the user to try again
+            document.body.classList.remove('incorrect-bg'); // Remove incorrect background
+            document.getElementById('login-container').style.display = 'block'; // Show login container again
+            document.getElementById('try-again').style.display = 'none'; // Hide "Try Again" button
+            document.getElementById('password').value = ''; // Clear the password field
         }
 
         window.onload = function() {
@@ -119,8 +143,10 @@
         <h2>For My Mai Only</h2>
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
-        <div id="incorrect-message">Yaksss, chismoso!!!</div> <!-- Incorrect password message -->
     </div>
+
+    <!-- Try Again button (for incorrect password) -->
+    <button id="try-again" onclick="tryAgain()">Try Again</button>
 
     <!-- Main content (hidden until authentication) -->
     <div id="main-content">
